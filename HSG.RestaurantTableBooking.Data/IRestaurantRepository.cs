@@ -1,4 +1,5 @@
-﻿using HSG.RestaurantTableBooking.Core.ViewModels;
+﻿using HSG.RestaurantTableBooking.Core;
+using HSG.RestaurantTableBooking.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace HSG.RestaurantTableBooking.Data
         Task<IEnumerable<RestaurantBranchModel>> GetRestaurantBranchesByRestaurantIdAsync(int restaurantId);
         Task<IEnumerable<DiningTalbeWithTimeSlotModel>> GetDiningTalbesByBranchAsync(int branchId, DateTime date);
         Task<IEnumerable<DiningTalbeWithTimeSlotModel>> GetDiningTalbesbyBranchAsync(int branchId);
+        Task<RestaurantReservationDetails> GetRestaurantReservationDetailsAsync(int timeSlotId);
+        Task<User?> GetUserAsync(string emailId);
     }
 }

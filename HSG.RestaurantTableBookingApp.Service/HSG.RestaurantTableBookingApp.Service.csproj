@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.29.3" />
+    <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HSG.RestaurantTableBooking.Core\HSG.RestaurantTableBooking.Core.csproj" />
     <ProjectReference Include="..\HSG.RestaurantTableBooking.Data\HSG.RestaurantTableBooking.Data.csproj" />
   </ItemGroup>
