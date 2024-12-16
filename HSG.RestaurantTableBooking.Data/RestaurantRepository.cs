@@ -1,4 +1,5 @@
-﻿using HSG.RestaurantTableBooking.Core.ViewModels;
+﻿using HSG.RestaurantTableBooking.Core;
+using HSG.RestaurantTableBooking.Core.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,11 @@ namespace HSG.RestaurantTableBooking.Data
                     ReservationDay = ts.ReservationDay,
                     TableStatus = ts.TableStatus,
                     TimeSlotId = ts.Id,
+                    UserEmailId = (from r in  _db.Reservations
+                                   join u in _db.Users on r.UserId equals u.Id
+                                   where r.TimeSlotId == ts.Id
+                                   select u.Email.ToLower()).FirstOrDefault() 
+                    
                 }).ToListAsync();
             return data;
         }
@@ -98,5 +104,33 @@ namespace HSG.RestaurantTableBooking.Data
                 }).ToListAsync();
             return branchs;
         }
+
+        public Task<User?> GetUserAsync(string emailId)
+        {
+            return _db.Users.FirstOrDefaultAsync(f => f.Email.Equals(emailId));
+        }
+
+        public async Task<RestaurantReservationDetails> GetRestaurantReservationDetailsAsync(int timeSlotId)
+        {
+
+            var query = await (from diningTable in _db.DiningTables
+                               join restaurantBranch in _db.RestaurantBranches on diningTable.RestaurantBranchId equals restaurantBranch.Id
+                               join restaurant in _db.Restaurants on restaurantBranch.RestaurantId equals restaurant.Id
+                               join timeSlot in _db.TimeSlots on diningTable.Id equals timeSlot.DiningTableId
+                               where timeSlot.Id == timeSlotId
+                               select new RestaurantReservationDetails()
+                               {
+                                   RestaurantName = restaurant.Name,
+                                   BranchName = restaurantBranch.Name,
+                                   Address = restaurantBranch.Address,
+                                   TableName = diningTable.TableName,
+                                   Capacity = diningTable.Capacity,
+                                   MealType = timeSlot.MealType,
+                                   ReservationDay = timeSlot.ReservationDay
+                               }).FirstOrDefaultAsync();
+
+            return query;
+        }
+
     }
 }
