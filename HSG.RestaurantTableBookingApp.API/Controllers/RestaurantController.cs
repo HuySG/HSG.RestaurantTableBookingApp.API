@@ -18,7 +18,7 @@ namespace HSG.RestaurantTableBookingApp.API.Controllers
         public RestaurantController(IRestaurantService restaurantService, IReservationService reservationService, IEmailNotification emailNotification)
         {
             _restaurantService = restaurantService;
-            this._reservationService = reservationService;
+            _reservationService = reservationService;
             this.emailNotification = emailNotification;
         }
         [HttpGet("restaurants")]
