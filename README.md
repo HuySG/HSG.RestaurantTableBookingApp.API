@@ -63,15 +63,22 @@ The **Restaurant Table Booking App API** is a robust backend solution for managi
 
 ## Usage
 ### Endpoints Overview
+
+#### Reservation
 | Method | Endpoint                     | Description                          |
 |--------|------------------------------|--------------------------------------|
-| POST   | /api/users/register          | Register a new user                  |
-| POST   | /api/users/login             | Authenticate user via Azure AD B2C   |
-| GET    | /api/tables                  | Retrieve all tables                  |
-| POST   | /api/reservations            | Create a new reservation             |
-| GET    | /api/reservations            | List all reservations                |
-| PUT    | /api/reservations/{id}       | Modify an existing reservation       |
-| DELETE | /api/reservations/{id}       | Cancel a reservation                 |
+| GET    | /api/Reservation/{id}        | Retrieve details of a reservation    |
+| POST   | /api/Reservation/CheckIn     | Check-in for a reservation           |
+
+#### Restaurant
+| Method | Endpoint                                   | Description                                       |
+|--------|-------------------------------------------|---------------------------------------------------|
+| GET    | /api/Restaurant/restaurants               | Retrieve all restaurants                         |
+| GET    | /api/Restaurant/branches/{restaurantId}   | Get branches of a specific restaurant            |
+| GET    | /api/Restaurant/diningtables/{branchId}   | Get dining tables of a specific branch           |
+| GET    | /api/Restaurant/diningtables/{branchId}/{date} | Get available tables of a branch on a specific date |
+| GET    | /api/Restaurant/getreservations           | Retrieve list of reservations                    |
+| POST   | /api/Restaurant                           | Add a new restaurant                             |
 
 ## Contributing
 Contributions are welcome! To contribute:
