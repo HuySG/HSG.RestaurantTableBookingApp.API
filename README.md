@@ -1,5 +1,5 @@
 # Restaurant Table Booking App API
-
+[Application Demo](https://hsg-table-booking-app-web-c8g5c2are5fad3ep.southeastasia-01.azurewebsites.net/)
 ## Overview
 The **Restaurant Table Booking App API** is a robust backend solution for managing restaurant reservations and table bookings. This project offers comprehensive functionality for restaurants to streamline their booking processes, optimize table usage, and enhance customer experience.
 
